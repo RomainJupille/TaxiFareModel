@@ -61,6 +61,17 @@ class Trainer():
         rmse = compute_rmse(y_pred, y_eval)
         return rmse
 
+def play():
+    df = get_data()
+    df = clean_data(df)
+    y = df.pop("fare_amount")
+    X = df
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    model = Trainer(X_train, y_train)
+    model.run()
+    result = model.evaluate()
+    print(result)
+
 if __name__ == "__main__":
     df = get_data()
     df = clean_data(df)
